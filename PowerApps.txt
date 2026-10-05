@@ -50,7 +50,7 @@ PowerAutomate連携
 　　　「=Filter(table, field1 = "man" && field2 = "AB")」　：○
 　　　「=Filter(table, ID > 460)」　：×
 　委任問題を回避する方法
-　　①データソースを変更する（Excel < SPOList < Dataverse）
+　　①データソースを変更する（Excel < SharePointList < Dataverse）
 　　②PowerAppsのデータ行の制限を変更する（上限2,000行）
 　　③処理の改善
 　　　委任できる関数でフィルタ（With, ClearCollect）してから委任できない関数を実行する
