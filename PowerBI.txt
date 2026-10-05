@@ -10,23 +10,23 @@
 　９．「閉じて適用」をクリック
 
 
-SPO上からファイルを取り込む
+SharePoint上からファイルを取り込む
 　ファイルのデータ取り込み
 　　特定のファイルのみをBIに反映させたい場合に使用
-　　データの取得→詳細→検索に「Web」と入力→「Web」選択→SPO上のファイルパスをURLに指定→接続
+　　データの取得→詳細→検索に「Web」と入力→「Web」選択→SharePoint上のファイルパスをURLに指定→接続
 　　（ログインできていない場合）組織アカウントからログイン
 　　取り込みたいデータにチェックを入れ、「読込」クリック
 　フォルダ指定のデータ取り込み
 　　複数のファイル、これからファイルが増える予定であるものをBIに反映させたい場合に使用
 　　データの取得→詳細→検索に「SharePoint」と入力→「SharePointフォルダー」選択
-　　→SPO「ホーム」のURLを指定（フォルダのパスではない）→接続
+　　→SharePoint「ホーム」のURLを指定（フォルダのパスではない）→接続
 　　（ログインできていない場合）組織アカウントからログイン
-　　指定したSPO配下のファイルがすべて表示されるので、「データの変換」→「Name」列：対象フォルダの中にある1つの任意のファイルでフィルタ
+　　指定したSharePoint配下のファイルがすべて表示されるので、「データの変換」→「Name」列：対象フォルダの中にある1つの任意のファイルでフィルタ
 　　→右側「Folder Path」をクリック→下部に表示されるフルパスをコピー→右ペイン「フィルターされた行」を削除
 　　→「Folder Path」列を「指定の値に等しい」でフィルタ、先ほどの値を貼り付ける
 　　→「Content」列を展開→「ファイルの結合」ダイアログ中の左ペイン「データ」選択→「OK」クリック
 　　→複数のファイルのデータがまとまっていることを確認、「閉じて適用」クリック
-　SPOListのデータ取り込み
+　SharePointListのデータ取り込み
 
 データソースの変更
 　ローカルのデータソースを変更
@@ -40,15 +40,15 @@ SPO上からファイルを取り込む
 　　　= Excel.Workbook(File.Contents(Path, ...  　：ローカルのExcel
       = Excel.Workbook(Web.Contents(Path, ...     ：Web上のExcel
       = Folder.Files(Path, ...                    ：ローカルフォルダ
-　　　= SharePoint.Files(Path, ...                ：SPO上フォルダ
-　　　= SharePoint.Tables(Path, ...               ：SPOList
+　　　= SharePoint.Files(Path, ...                ：SharePoint上フォルダ
+　　　= SharePoint.Tables(Path, ...               ：SharePointList
 　データソースをローカルからWebに変更する
-　　１．SPO上の任意のデータソースファイルのパスを取得、コピーする
+　　１．SharePoint上の任意のデータソースファイルのパスを取得、コピーする
 　　２．ホーム→データの変換でPowerQueryを開き、右カラムより「ソース」選択、数式バーを広げる
 　　３．「File.Contents...」→「Web.Contents...」に書き換え、さらにパスを貼り付ける
 　　４．「閉じて適用」クリック
 　フォルダ単位で、データソースをローカルからWebに変更する
-　　１．SPO上の任意のデータソースフォルダのパスを取得、コピーし、URLデコーダにかけてデコードしておく
+　　１．SharePoint上の任意のデータソースフォルダのパスを取得、コピーし、URLデコーダにかけてデコードしておく
 　　２．ホーム→データの取得→SharePointフォルダーを選択
 　　３．SharePointのホーム画面ページのURLを指定、OKクリック→データの変換クリック
 　　４．新しいクエリが作成されているので、その右カラムより「ソース」選択、数式バーの値をコピー
@@ -64,8 +64,8 @@ SPO上からファイルを取り込む
 データの取得→空のクエリ
 表示→詳細エディタで以下の内容を入力
 let
-    relativePath = "/sites/msspo/Shared Document/(日本語部分そのままのSPO上ディレクトリ)/(ファイル名+拡張子)",
-    baseSite = "https://(テナント).sharepoint.com/sites/msspo",
+    relativePath = "/sites/(...)/Shared Document/(日本語部分そのままのSharePoint上ディレクトリ)/(ファイル名+拡張子)",
+    baseSite = "https://(テナント).sharepoint.com/sites/(...)",
     Source = Json.Document(
         Web.Contents(
             baseSite,
@@ -112,17 +112,17 @@ in
 　(Web上から取り込んだ場合)データソースのURLをパラメータ化した場合の反映方法
 　　ホーム→データの変換→データソース設定
 　　ソースの変更→URLの「ABC」アイコンをクリック→「パラメーター」を選択
-　(SPOフォルダ上から取り込んだ場合)データソースのURLをパラメータ化した場合の反映方法
-　　前半はWebと設定方法は同じだが、とってくるURLはSPOの「ホーム」をクリックした時のURL
+　(SharePointフォルダ上から取り込んだ場合)データソースのURLをパラメータ化した場合の反映方法
+　　前半はWebと設定方法は同じだが、とってくるURLはSharePointの「ホーム」をクリックした時のURL
 　　これがWebのURLを格納するためのパラメータになる
 　　PowerQueryを開いた状態で、右ペイン「フィルターされた行」クリック
 　　「Folder Path」の値をコピー、それを値としたパラメータを新規で作成
 　　PowerQueryを開いた状態で、右ペイン「フィルターされた行」の歯車マークをクリック
 　　「ABC」アイコンをクリック→「パラメーター」を選択
 　　これがフィルタのためのパラメータになる
-　(SPOListから取り込んだ場合)データソースのURLをパラメータ化した場合の反映方法
-　　SPOListのIDをパラメータ化する
-　　SPOListを開き、設定アイコン→リストの設定→そのURLの「%7B」から「%7D」の間の値をパラメータ設定する
+　(SharePointListから取り込んだ場合)データソースのURLをパラメータ化した場合の反映方法
+　　SharePointListのIDをパラメータ化する
+　　SharePointListを開き、設定アイコン→リストの設定→そのURLの「%7B」から「%7D」の間の値をパラメータ設定する
 　　PowerQueryを開いた状態で、右ペイン「ナビゲーション」をクリック
 　　数式バーの、IDが入っているところとその「""」を削除し、パラメータ名をセット
 　(Excelファイルから取り込んだ場合)データソースのパスをパラメータ化した場合の反映方法
@@ -216,7 +216,7 @@ PowerBIの中にPowerApps（PowerAppsビジュアル）を埋め込む
 　　　呼び出す際：PowerBIIntegration.Dataのように記載することで呼び出せる
 　　　　.Data ... 全データを呼び出す
 　PowerBI-PowerAppsがリアルタイムで反映されるために
-　　接続方法「DirectQuery」を使用（ただしDataverseのみサポート、SPOListは使用不可）
+　　接続方法「DirectQuery」を使用（ただしDataverseのみサポート、SharePointListは使用不可）
 
 
 
