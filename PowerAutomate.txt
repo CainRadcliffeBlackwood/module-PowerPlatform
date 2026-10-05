@@ -199,7 +199,7 @@ OData(Open Data Protocol)クエリ：複数の項目を取得する際に、取�
 　　　Number asc, Title desc
 
 クエリパラメータ
-　SharePoint Rest(REpresentational State Transfer) API、Microsoft Graph APIで利用可能な、ODataクエリオプション
+　SharePoint RestAPI、Microsoft Graph APIで利用可能な、ODataクエリオプション
 　取得したデータをカスタマイズできる
 　SharePoint Rest API
 　　PowerAutomateのアクションや関数にないことをSharePointにRest要求、SharePoint側に期待した行動をさせる
