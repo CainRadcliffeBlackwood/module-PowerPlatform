@@ -131,7 +131,7 @@ SharePointに対するアクセス権をPowerAutomateからコントロール
 　・ユーザからの返事を受領することができる
 
 アダプディブカード作成
-　・Adaptive Cards Designer(https://adaptivecards.io/designer/)にアクセス
+　・Adaptive Cards Designer(https://adaptivecards.microsoft.com/designer)にアクセス
 　・New cardクリック
 　　・Elements：カード作成者が配置する部品
 　　・Inputs：入力を受け取る部品
@@ -187,7 +187,7 @@ OData(Open Data Protocol)クエリ：複数の項目を取得する際に、取�
 　　Number eq 20                                    // シングルクォートはいらない
 　　Date eq '2024-07-29'                            // シングルクォート必要＋「yyyy-MM-dd」形式
 　　DateTime eq '2024-07-29T12:34:00'               // シングルクォート必要＋「yyyy-MM-ddThh:mm:ss」形式、末尾に「Z」をつけるとUTC扱い
-　　　　　　　　　　　　　　　　　　　　　　　　　     SPOListでは時間は分までしか持てないため、「ss」部分は必ず「00」になる
+　　　　　　　　　　　　　　　　　　　　　　　　　     SharePointListでは時間は分までしか持てないため、「ss」部分は必ず「00」になる
 　　YesNo eq 0                                      // Yes/No型の場合、Yes=1, No=0　「eq true」とかはできない
 　　Choice eq 'Choice1' and Choice eq 'Choice3'     // 複数選択肢の場合は「and」でつなぐ
 　　Attachments eq 1                                // 固定名。添付がある場合は1、ない場合は0
@@ -259,7 +259,7 @@ OData(Open Data Protocol)クエリ：複数の項目を取得する際に、取�
 　　トリガーの三点リーダ→設定の中に記載する場所がある
 　　参考）https://qiita.com/h-nagao/items/46d5d95cfacb3c70841b
 　　　例）あるファイルの更新時にフローを実行するとき
-　　　　誤：SPO上のファイルが更新→更新されたファイル名の中に「Target」と入っていれば→…
+　　　　誤：SharePoint上のファイルが更新→更新されたファイル名の中に「Target」と入っていれば→…
 　　　　正：トリガー条件に、例えば「@greater(indexOf(triggerBody()['Title'], 'Target'), 0)」と入力
 　トリガーの最適化
 　　フローを同時実行できる数を制御する（溢れた分はキューに入り、逐次処理されていく）
@@ -283,8 +283,8 @@ OData(Open Data Protocol)クエリ：複数の項目を取得する際に、取�
 　・PowerAutomateの「Do until」は後判定ループ
 　・月末日を取得するには、「 addDays ( startOfMonth ( addToTime ( 日付変数 ), 1, 'Month' ), -1)
 　・OneDriveの「ファイルのコピー」では、仕様として、パスの中に存在しないフォルダが指定された場合、自動でフォルダを作成する
-　・SPOListの特定列を射影・1行テキストにする方法
-　　・SPOListを取得、ODataクエリで1列に絞る
+　・SharePointListの特定列を射影・1行テキストにする方法
+　　・SharePointListを取得、ODataクエリで1列に絞る
 　　・データ操作の「選択」で、開始に「value」、マップをテキスト型に変え、マップに指定列を選ぶ
 　　・データ操作の「作成」で、配列に「出力」、結合文字を指定
 
